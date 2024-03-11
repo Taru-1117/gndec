@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Teacher Co-coordinator for Society</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .center-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            max-width: 600px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+        .appbtn {
+            margin-left: 10px;
+        }
+    </style>
+    <script>
+        function showAdditionalField() {
+            let society = document.getElementById("society").value;
+            let societyNameInput = document.getElementById("societyNameInput");
+            let subSocietyLabel = document.getElementById("subSocietyLabel");
+
+            // If the selected society is the one requiring additional input, show the input field
+            if (society === "Other") {
+                societyNameInput.style.display = "block";
+            } else {
+                societyNameInput.style.display = "none";
+            }
+
+            // Show or hide the sub-label based on the selected society
+            if (society == "2" || society == "5" || society == "6") {
+                subSocietyLabel.style.display = "block";
+            } else {
+                subSocietyLabel.style.display = "none";
+            }
+        }
+
+        window.onload = function() {
+            var select = document.getElementById("session");
+            var currentYear = new Date().getFullYear();
+            var endYear = currentYear + 10; // Adjust this to change the number of future years
+
+            for (var i = 2023; i <= endYear; i++) {
+                var option = document.createElement("option");
+                option.text = i;
+                option.value = i;
+                select.add(option);
+            }
+        };
+    </script>
+</head>
+<body>
+    <center> <img src="/images_css/front.jpeg"></center>
+ <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand me-5" style="margin-left: 30px;" href="student_dashboard.php">HOME</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item me-5"></li>
+                    <li class="nav-item me-5"></li>
+                    <li class="nav-item dropdown me-4">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Control Panel
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
+                            <li><a class="dropdown-item" href="user.html">ADD Coordinator</a></li>
+                            <li><a class="dropdown-item" href="#">Check Member's List</a></li>
+                            <li><a class="dropdown-item" href="#">Check Events Details</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            user
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
+                            <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+                            <li><a class="dropdown-item" href="#">Forget Password</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    
+    <div class="center-box">
+        <div class="form-container">
+            <div class="box" style="text-align: center;">
+                <h1 class="teacher">Create Teacher Coordinator</h1>
+            </div>
+            <div id="userAddFormContainer">    
+                <form action="user_add.php" method="post">
+                    <label for="userName">User Name:</label>
+                    <input type="text" name="userName" id="userName" required> <!-- Added the required attribute -->
+                    <br><br>
+                    <label for="session">Session:</label>
+                    <select name="session" id="session" required> <!-- Added the required attribute -->
+                        <option value="">Select Year</option>
+                        <!-- Options will be added dynamically using JavaScript -->
+                    </select>
+                    <br><br>
+                    <label for="society">Select or type a society:</label>
+                    <select name="society" id="society" onchange="showAdditionalField()" required> <!-- Added the required attribute -->
+                        <option value="Select">-Select-</option>
+                        <option value="1">FMM</option>
+                        <option value="3">NCC</option>
+                        <option value="4">NSS</option>
+                        <option value="5">Cultural Society</option>
+                        <option value="6">Sports Society</option>
+                        <option value="2">Technical Society</option>
+                        <!-- Add more predefined society options as needed -->
+                        <option value="Other">Other (Please specify)</option>
+                    </select>
+                    <br><br>
+                    <div id="societyNameInput" style="display: none;">
+                        <label for="societyName">Society Name:</label>
+                        <input type="text" name="societyName" id="societyName">
+                    </div>
+                    <div id="subSocietyLabel" style="display: none;">
+                        <label>Sub-Society:</label>
+                        <input type="text" name="sub-society">
+                    </div>
+                    <div class="form-actions">
+                        <input type="submit" value="Assign Co-coordinator" class="appbtn"> 
+                    </div>      
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

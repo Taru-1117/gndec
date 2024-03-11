@@ -1,0 +1,45 @@
+body{   
+    background:white;  
+}  
+#frm{  
+    border: solid gray 1px;  
+    width:35%;  
+    border-radius: 2px;  
+    margin: 120px auto;  
+    background: white;  
+    padding: 50px;  
+}  
+#btn{  
+    color: #fff;  
+    background: #337ab7;  
+    padding: 7px;  
+    margin-left: 70%;  
+} 
+.hidden {
+    display: none;
+  }
+.add{
+    position: relative;
+     display: flex;
+     flex-direction: column;
+     width: 45%; 
+    word-wrap: break-word;
+     background-color: #fff;
+     background-clip: border-box;
+     border: 1px solid rgba(0, 0, 0, 0.125);
+     border-radius: 0.25rem;
+     margin: 120px auto;
+ }
+.header{
+    background-color: rgba(0, 0, 0, 0.03);
+    font-size: 30px;
+    }
+.teacher{
+  color:black;
+    font-size: 30px;
+    margin-left:20px ;
+ }
+.appFormInputContainer{
+    margin-left: 20px;
+    margin-bottom: 10px;
+ }
